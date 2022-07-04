@@ -2,6 +2,7 @@ package com.example.challengmelibootcamp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengmelibootcamp.data.model.CategoryModel
@@ -51,6 +52,7 @@ class MainViewModel: ViewModel() {
             }
         }
     }
+
 
 }
 
