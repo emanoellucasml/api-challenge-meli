@@ -14,6 +14,3 @@ interface Top20ByCategoryService {
     ): Call<Top20ByCategoryModel>
 }
 
-
-//@GET("Task/{id}")
-//fun load(@Path(value = "id", encoded = true) id: Int): Call<TaskModel>
