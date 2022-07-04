@@ -16,7 +16,7 @@ import com.example.challengmelibootcamp.viewmodel.MainViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel = MainViewModel()
+    private val viewModel: MainViewModel = MainViewModel(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private fun searchProduct(){
         val productName: String = this.binding.editSearch.text.toString()
         showProgressBar()
-//        viewModel.searchCategory(categoryName)
+        viewModel.searchCategory(productName)
     }
 
     private fun showProgressBar(){
@@ -80,6 +80,15 @@ class MainActivity : AppCompatActivity() {
 //                Toast.makeText(baseContext, msg, Toast.LENGTH_LONG).show()
 //            }
 //        })
+
+        viewModel.productSearch().observe(this, Observer {
+            hideProgressBar()
+            if(it.success()){
+                Toast.makeText(this, "Sucesso!!!", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Erro!!", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 }
