@@ -19,6 +19,12 @@ class ProductModel {
     @SerializedName("type")
     var type: String = ""
 
+    @SerializedName("sold_quantity")
+    var soldQuantity: String = ""
+
+    @SerializedName("available_quantity")
+    var availableQuantity: String = ""
+
     @SerializedName("price")
     var price: String = ""
 

@@ -52,12 +52,16 @@ class MainViewModel(val context: Context): ViewModel() {
                         val categoryId = categoryResponse.body()?.first()!!.categoryId
                         searchTop20ByCategoy(categoryId)
                     }
-                    else -> {
+                    Constants.HTTP.NOT_FOUND -> {
                         productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.INVALID_CATEGORY))
+                    }
+                    else  -> {
+                        throw IOException()
                     }
                 }
             }catch (e: ConnectException){
                 productsSearch.postValue(ProductsSearchResult(message = Constants.MESSAGE.INTERNET_CONNECTION, success = false))
+                Log.d("MainViewModel", e.message.toString())
             }catch(e: IOException){
                 Log.d("MainViewModel", e.message.toString())
                 productsSearch.postValue(ProductsSearchResult(message = Constants.MESSAGE.UKNOWN_ERROR, success = false))
@@ -76,6 +80,8 @@ class MainViewModel(val context: Context): ViewModel() {
                 }
             }
             this.getProducts(stringQuery.toString())
+        }else if(top20Response.code() == Constants.HTTP.UNAUTHORIZED){
+            productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.UKNOWN_ERROR))
         }else{
             productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.INVALID_CATEGORY))
         }

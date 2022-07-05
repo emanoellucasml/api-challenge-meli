@@ -53,6 +53,7 @@ class ProductDetailsViewModel : ViewModel(){
         val result = productRepository.getDescription(productModel.id)
         if(result.code() == Constants.HTTP.SUCCESS){
             this.productDescriptionModel = result.body()!!
+            this.productDescriptionModel.productModel = productModel
             productsSearchResult.postValue(ProductsSearchResult(true, "Sucesso"))
         }else{
             productsSearchResult.postValue(ProductsSearchResult(false, Constants.MESSAGE.UKNOWN_ERROR))

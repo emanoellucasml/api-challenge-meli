@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.Option
+import com.bumptech.glide.request.RequestOptions
 import com.example.challengmelibootcamp.R
+import com.example.challengmelibootcamp.data.model.ProductDescriptionModel
 import com.example.challengmelibootcamp.databinding.ActivityProductDetailsBinding
 import com.example.challengmelibootcamp.utils.Constants
 import com.example.challengmelibootcamp.viewmodel.ProductDetailsViewModel
@@ -24,6 +28,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         setObservers()
 
         searchProduct()
+
+        setListeners()
     }
 
 
@@ -41,11 +47,35 @@ class ProductDetailsActivity : AppCompatActivity() {
     private fun setObservers(){
         viewModel.productsSearchResult().observe(this, Observer {
             if(it.success()){
-                binding.textProductTitle.text = viewModel.productDescriptionModel().description
+                setProductsData(viewModel.productDescriptionModel())
+
             }else{
                 Toast.makeText(baseContext, "ERRO!!!!", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    private fun setProductsData(productDescriptionModel: ProductDescriptionModel){
+        binding.textProductTitle.text = productDescriptionModel.productModel.title
+        binding.textUnitsSold.text = productDescriptionModel.productModel.soldQuantity + " vendidos"
+        binding.textProductPrice.text = "${binding.textProductPrice.text}".replace("*", productDescriptionModel.productModel.price)
+        binding.textAvailableQuantity.text = "${binding.textAvailableQuantity.text}".replace("*", productDescriptionModel.productModel.availableQuantity)
+        binding.textDescription.text = productDescriptionModel.description
+
+        val requestOptions = RequestOptions()
+            .placeholder(R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.ic_launcher_background)
+
+        Glide.with(this)
+            .applyDefaultRequestOptions(requestOptions)
+            .load(productDescriptionModel.productModel.pictures.first().url)
+            .into(binding.imageProductThumbnail)
+    }
+
+    private fun setListeners(){
+        this.binding.buttonBack.setOnClickListener {
+            this.finish()
+        }
     }
 
 }

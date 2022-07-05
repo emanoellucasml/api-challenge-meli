@@ -7,13 +7,14 @@ class Constants {
     }
 
     object API_HEADER{
-        private const val ACCESS_TOKEN = "APP_USR-4118503939507203-070510-7d6c6191bb3a83345b7e73b659356a10-166140586"
+        private const val ACCESS_TOKEN = "APP_USR-4118503939507203-070517-51f7402fba63c6b0949fdd49b79ab367-166140586"
         public const val AUTHORIZATION_VALUE = "Bearer ${ACCESS_TOKEN}"
     }
 
     object HTTP{
         public const val SUCCESS: Int = 200
         public const val NOT_FOUND: Int = 404
+        public const val UNAUTHORIZED: Int = 401
     }
 
     object MESSAGE{

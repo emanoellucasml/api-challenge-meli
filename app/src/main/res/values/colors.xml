@@ -10,4 +10,8 @@
 
     <color name="yellow_mel_primary">#FFE600</color>
     <color name="yellow_mel_secondary">#FEDB14</color>
+
+    <color name="blue_primary_meli">#3482FA</color>
+    <color name="blue_secondary_meli">#E3EDFB</color>
+
 </resources>

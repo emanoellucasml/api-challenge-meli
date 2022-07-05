@@ -5,4 +5,6 @@ import com.google.gson.annotations.SerializedName
 class ProductDescriptionModel {
     @SerializedName("plain_text")
     public var description: String = ""
+
+    public var productModel: ProductModel = ProductModel()
 }
