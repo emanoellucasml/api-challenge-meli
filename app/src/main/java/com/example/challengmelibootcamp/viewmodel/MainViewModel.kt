@@ -14,7 +14,6 @@ import com.example.challengmelibootcamp.data.repository.ProductRepository
 import com.example.challengmelibootcamp.data.repository.TopTwentyByCategoryRepository
 import com.example.challengmelibootcamp.utils.ProductsSearchResult
 import com.example.challengmelibootcamp.utils.Constants
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -67,10 +66,12 @@ class MainViewModel(val context: Context): ViewModel() {
     public fun searchTop20ByCategoy(categoryId: String){
         val top20Response: Response<TopTwentyByCategoryModel> = topTwentyByCategoryRepository.searchTop20ByCategory(categoryId)
         if(top20Response.code() == Constants.HTTP.SUCCESS){
-            val categories = top20Response.body()?.content
+            val products = top20Response.body()?.content
             var stringQuery = StringBuilder()
-            categories?.forEach {
-                stringQuery.append(it.id, ",")
+            products?.forEach {
+                if(it.type.equals("ITEM")){
+                    stringQuery.append(it.id, ",")
+                }
             }
             this.getProducts(stringQuery.toString())
         }else{

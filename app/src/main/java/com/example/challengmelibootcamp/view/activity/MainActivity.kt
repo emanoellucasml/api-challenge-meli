@@ -13,13 +13,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.challengmelibootcamp.databinding.ActivityMainBinding
 import com.example.challengmelibootcamp.view.adapter.ProductsAdapter
+import com.example.challengmelibootcamp.view.listener.`interface`.OnClickItemListener
+import com.example.challengmelibootcamp.view.listener.implementation.OnClickItemListenerImplementation
 import com.example.challengmelibootcamp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel = MainViewModel(this)
-    private var adapter: ProductsAdapter = ProductsAdapter(listOf(), this)
+    private var adapter: ProductsAdapter = ProductsAdapter(listOf(), this, OnClickItemListenerImplementation(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

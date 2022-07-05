@@ -15,4 +15,11 @@ class ProductModel {
 
     @SerializedName("secure_thumbnail")
     var thumbnail: String = ""
+
+    @SerializedName("type")
+    var type: String = ""
+
+    @SerializedName("price")
+    var price: String = ""
+
 }
