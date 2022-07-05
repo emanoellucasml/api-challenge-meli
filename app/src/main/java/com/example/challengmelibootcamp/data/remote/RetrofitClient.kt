@@ -31,7 +31,6 @@ class RetrofitClient private constructor(){
                     }
                 })
 
-
                 instance = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
