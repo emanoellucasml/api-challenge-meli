@@ -2,6 +2,6 @@ package com.example.challengmelibootcamp.view.listener.`interface`
 
 import com.example.challengmelibootcamp.data.model.ProductModel
 
-interface OnClickItemListener {
+interface IOnClickItemListener {
     fun action(product: ProductModel)
 }

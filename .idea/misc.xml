@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/icon_heart_empty.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/item_row.xml" value="0.291" />
         <entry key="app/src/main/res/drawable/rounded_edit_text.xml" value="0.2745" />
         <entry key="app/src/main/res/drawable/shadow_rect.xml" value="0.14" />

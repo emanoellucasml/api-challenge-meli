@@ -10,13 +10,19 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.challengmelibootcamp.R
 import com.example.challengmelibootcamp.data.model.ProductDescriptionModel
 import com.example.challengmelibootcamp.databinding.ActivityProductDetailsBinding
+import com.example.challengmelibootcamp.infraestructure.Preferences
 import com.example.challengmelibootcamp.utils.Constants
 import com.example.challengmelibootcamp.viewmodel.ProductDetailsViewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
 
-    private val viewModel: ProductDetailsViewModel = ProductDetailsViewModel()
+    private val viewModel: ProductDetailsViewModel by lazy {
+        ProductDetailsViewModel(this.baseContext)
+    }
     private lateinit var binding: ActivityProductDetailsBinding
+    private val idProduct: String? by lazy {
+        intent.getStringExtra(Constants.PRODUCT.PRODUCT_ID)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +68,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.textAvailableQuantity.text = "${binding.textAvailableQuantity.text}".replace("*", productDescriptionModel.productModel.availableQuantity)
         binding.textDescription.text = productDescriptionModel.description
 
+        if(viewModel.isFavorite(productDescriptionModel.productModel.id)){
+            binding.buttonFavorite.setBackgroundResource(R.drawable.icon_heart_full)
+        }else{
+            binding.buttonFavorite.setBackgroundResource(R.drawable.icon_heart_empty)
+        }
+
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.ic_launcher_background)
             .placeholder(R.drawable.ic_launcher_background)
@@ -76,6 +88,20 @@ class ProductDetailsActivity : AppCompatActivity() {
         this.binding.buttonBack.setOnClickListener {
             this.finish()
         }
+
+        this.binding.buttonFavorite.setOnClickListener {
+            if(viewModel.isFavorite(this.idProduct!!)){
+                binding.buttonFavorite.setBackgroundResource(R.drawable.icon_heart_empty)
+                viewModel.disfavorProduct(this.idProduct!!)
+                Toast.makeText(this, "Produto removido dos favoritos.", Toast.LENGTH_SHORT).show()
+            }else{
+                binding.buttonFavorite.setBackgroundResource(R.drawable.icon_heart_full)
+                viewModel.favoriteProduct(this.idProduct!!)
+                Toast.makeText(this, "Produto adicionado aos favoritos.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
+
 
 }

@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.challengmelibootcamp.data.model.ProductModel
 import com.example.challengmelibootcamp.databinding.ItemRowBinding
-import com.example.challengmelibootcamp.view.listener.`interface`.OnClickItemListener
+import com.example.challengmelibootcamp.view.listener.`interface`.IOnClickItemListener
 import com.example.challengmelibootcamp.view.viewholder.ProductViewHolder
 
-class ProductsAdapter(var products: List<ProductModel>, var context: Context, var onClickItemListener: OnClickItemListener) : RecyclerView.Adapter<ProductViewHolder>() {
+class ProductsAdapter(var products: List<ProductModel>, var context: Context, var onClickItemListener: IOnClickItemListener) : RecyclerView.Adapter<ProductViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemRowBinding.inflate(LayoutInflater.from(context), parent, false)
         return ProductViewHolder(binding)

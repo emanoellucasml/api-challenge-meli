@@ -26,4 +26,12 @@ class Constants {
     object PRODUCT{
         public const val PRODUCT_ID = "PRODUCT_ID"
     }
+
+    object APP{
+        public const val APP_NAME = "CHALLENGE_MELI"
+    }
+
+    object SHARED{
+        public const val FAVORITES = "FAVORITES"
+    }
 }
