@@ -44,9 +44,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListeners(){
         this.binding.editSearch.setOnEditorActionListener { textView, i, keyEvent ->
-            hideRecyclerView()
-            hideErrorMessage()
-            hideProgressBar()
+            if(binding.editSearch.text.length > 0){
+                hideRecyclerView()
+                hideErrorMessage()
+                hideProgressBar()
+            }
             if(i == EditorInfo.IME_ACTION_SEARCH || i == EditorInfo.IME_ACTION_DONE || keyEvent == null || keyEvent.keyCode == KeyEvent.KEYCODE_ENTER){
                 if(binding.editSearch.text.toString().length == 0){
                     showAlertDialog("Erro", "Voce deve digitar um termo para a pesquisa.")
