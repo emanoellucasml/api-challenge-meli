@@ -24,5 +24,4 @@ class ProductModel {
 
     @SerializedName("pictures")
     var pictures: MutableList<ProductPictureModel> = mutableListOf()
-
 }

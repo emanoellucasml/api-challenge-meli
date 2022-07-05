@@ -13,7 +13,7 @@ class ProductViewHolder(var binding: ItemRowBinding) : RecyclerView.ViewHolder(b
     fun bind(product: ProductModel, listener: OnClickItemListener){
         binding.textTitle.text = product.title
         binding.textSubtitle.text = product.subtitle
-        binding.textPrice.text = "${binding.textPrice.text}".replace("*", product.price)
+        binding.textPrice.text = "${binding.textPrice.text}".replace("*", product.price).replace(".", ",")
 
         val requestOptions = RequestOptions()
             .placeholder(R.drawable.ic_launcher_background)
@@ -23,7 +23,6 @@ class ProductViewHolder(var binding: ItemRowBinding) : RecyclerView.ViewHolder(b
             .applyDefaultRequestOptions(requestOptions)
             .load(product.thumbnail)
             .into(binding.imageThumbnail)
-
 
         binding.root.setOnClickListener {
             listener.action(product)
