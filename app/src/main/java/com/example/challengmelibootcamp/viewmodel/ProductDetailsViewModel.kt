@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.challengmelibootcamp.data.model.ProductDescriptionModel
 import com.example.challengmelibootcamp.data.model.ProductModel
 import com.example.challengmelibootcamp.data.repository.ProductRepository
 import com.example.challengmelibootcamp.utils.Constants
@@ -19,6 +20,11 @@ class ProductDetailsViewModel : ViewModel(){
     private var productsSearchResult: MutableLiveData<ProductsSearchResult> = MutableLiveData()
     public fun productsSearchResult() : LiveData<ProductsSearchResult>{
         return this.productsSearchResult
+    }
+
+    private var productDescriptionModel: ProductDescriptionModel = ProductDescriptionModel()
+    public fun productDescriptionModel() : ProductDescriptionModel {
+        return this.productDescriptionModel
     }
 
     public fun getProductDetails(id: String){
@@ -44,7 +50,13 @@ class ProductDetailsViewModel : ViewModel(){
     }
 
     public fun getProductDescription(productModel: ProductModel){
-
+        val result = productRepository.getDescription(productModel.id)
+        if(result.code() == Constants.HTTP.SUCCESS){
+            this.productDescriptionModel = result.body()!!
+            productsSearchResult.postValue(ProductsSearchResult(true, "Sucesso"))
+        }else{
+            productsSearchResult.postValue(ProductsSearchResult(false, Constants.MESSAGE.UKNOWN_ERROR))
+        }
     }
 
 }

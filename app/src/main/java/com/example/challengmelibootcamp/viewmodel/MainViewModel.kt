@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challengmelibootcamp.data.model.CategoryModel
-import com.example.challengmelibootcamp.data.model.ProductDescriptionModel
+import com.example.challengmelibootcamp.data.model.ProductModelWrapper
 import com.example.challengmelibootcamp.data.model.ProductModel
 import com.example.challengmelibootcamp.data.model.TopTwentyByCategoryModel
 import com.example.challengmelibootcamp.data.repository.CategoryRepository
@@ -83,7 +83,7 @@ class MainViewModel(val context: Context): ViewModel() {
 
 
     public fun getProducts(productIds: String){
-        val productResponse: Response<List<ProductDescriptionModel>> = productRepository.getDetails(productIds)
+        val productResponse: Response<List<ProductModelWrapper>> = productRepository.getDetails(productIds)
         if(productResponse.code() == 200){
             productsCollection = mutableListOf()
             for(produto in productResponse.body()!!){

@@ -21,4 +21,8 @@ class Constants {
         public const val UKNOWN_ERROR: String = "Desculpe-nos, houve um erro desconhecido."
         public const val INVALID_CATEGORY: String = "Erro. Verifique o termo digitado."
     }
+
+    object PRODUCT{
+        public const val PRODUCT_ID = "PRODUCT_ID"
+    }
 }
