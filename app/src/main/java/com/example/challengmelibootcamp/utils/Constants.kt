@@ -18,7 +18,7 @@ class Constants {
 
     object MESSAGE{
         public const val INTERNET_CONNECTION: String = "Erro, verifique sua conexao."
-        public const val UKNOWN_ERROR: String = "Desculpe-nos, houve um erro desconhcido."
+        public const val UKNOWN_ERROR: String = "Desculpe-nos, houve um erro desconhecido."
         public const val INVALID_CATEGORY: String = "Erro. Verifique o termo digitado."
     }
 }
