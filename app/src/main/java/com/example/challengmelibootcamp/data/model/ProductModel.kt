@@ -22,4 +22,7 @@ class ProductModel {
     @SerializedName("price")
     var price: String = ""
 
+    @SerializedName("pictures")
+    var pictures: MutableList<ProductPictureModel> = mutableListOf()
+
 }
