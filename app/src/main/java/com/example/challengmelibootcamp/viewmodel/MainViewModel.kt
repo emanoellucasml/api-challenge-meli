@@ -53,7 +53,7 @@ class MainViewModel(val context: Context): ViewModel() {
                         searchTop20ByCategoy(categoryId)
                     }
                     else -> {
-                        productsSearch.postValue(ProductsSearchResult(false, "Erro"))
+                        productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.INVALID_CATEGORY))
                     }
                 }
             }catch (e: ConnectException){
@@ -66,7 +66,7 @@ class MainViewModel(val context: Context): ViewModel() {
 
     public fun searchTop20ByCategoy(categoryId: String){
         val top20Response: Response<TopTwentyByCategoryModel> = topTwentyByCategoryRepository.searchTop20ByCategory(categoryId)
-        if(top20Response.code() == 200){
+        if(top20Response.code() == Constants.HTTP.SUCCESS){
             val categories = top20Response.body()?.content
             var stringQuery = StringBuilder()
             categories?.forEach {
@@ -74,8 +74,7 @@ class MainViewModel(val context: Context): ViewModel() {
             }
             this.getProducts(stringQuery.toString())
         }else{
-//            val message: String = Gson().fromJson(top20Response.errorBody()!!.string(), String::class.java)
-            productsSearch.postValue(ProductsSearchResult(false, "Erro"))
+            productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.INVALID_CATEGORY))
         }
     }
 
@@ -83,13 +82,13 @@ class MainViewModel(val context: Context): ViewModel() {
     public fun getProducts(productIds: String){
         val productResponse: Response<List<ProductDetailsModel>> = productRepository.getDetails(productIds)
         if(productResponse.code() == 200){
-            val produtos = productResponse.body()
+            productsCollection = mutableListOf()
             for(produto in productResponse.body()!!){
                 productsCollection.add(produto.body!!)
             }
-            productsSearch.postValue(ProductsSearchResult(true, "Sucesso!"))
+            productsSearch.postValue(ProductsSearchResult(true))
         }else{
-            productsSearch.postValue(ProductsSearchResult(false, "Erro"))
+            productsSearch.postValue(ProductsSearchResult(false, Constants.MESSAGE.INVALID_CATEGORY))
         }
     }
 }

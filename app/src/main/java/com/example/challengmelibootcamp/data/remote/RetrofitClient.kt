@@ -20,10 +20,6 @@ class RetrofitClient private constructor(){
                 val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
 
 
-                /*
-                 * Interceptor to intercept any request and add headers to it. The headers
-                 * are required to any action except to create a user and log in.
-                 * */
                 httpClient.addInterceptor(object: Interceptor{
                     override fun intercept(chain: Interceptor.Chain): Response {
                         val request = chain
