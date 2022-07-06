@@ -1,5 +1,6 @@
 package com.example.challengmelibootcamp.view.activity
 
+import android.graphics.Picture
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,10 +13,12 @@ import com.example.challengmelibootcamp.data.model.ProductDescriptionModel
 import com.example.challengmelibootcamp.databinding.ActivityProductDetailsBinding
 import com.example.challengmelibootcamp.infraestructure.Preferences
 import com.example.challengmelibootcamp.utils.Constants
+import com.example.challengmelibootcamp.view.adapter.PicturesAdapter
 import com.example.challengmelibootcamp.viewmodel.ProductDetailsViewModel
 
 class ProductDetailsActivity : AppCompatActivity() {
 
+    private lateinit var adapter: PicturesAdapter
     private val viewModel: ProductDetailsViewModel by lazy {
         ProductDetailsViewModel(this.baseContext)
     }
@@ -75,14 +78,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.buttonFavorite.setBackgroundResource(R.drawable.icon_heart_empty)
         }
 
-        val requestOptions = RequestOptions()
-            .error(R.drawable.ic_launcher_background)
-            .placeholder(R.drawable.ic_launcher_background)
+        adapter = PicturesAdapter(productDescriptionModel.productModel.pictures, this)
+        binding.imageProductThumbnail.adapter = adapter
 
-        Glide.with(this)
-            .applyDefaultRequestOptions(requestOptions)
-            .load(productDescriptionModel.productModel.pictures.first().url)
-            .into(binding.imageProductThumbnail)
     }
 
     private fun setListeners(){

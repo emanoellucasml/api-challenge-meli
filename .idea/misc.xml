@@ -10,6 +10,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23822463768115942" />
         <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.2617753623188406" />
         <entry key="app/src/main/res/layout/item_row.xml" value="0.26811594202898553" />
+        <entry key="app/src/main/res/layout/product_picture_item.xml" value="0.26811594202898553" />
+        <entry key="app/src/main/res/layout/product_picture_slider_item.xml" value="0.26811594202898553" />
       </map>
     </option>
   </component>
