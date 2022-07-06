@@ -7,7 +7,7 @@ class Constants {
     }
 
     object API_HEADER{
-        private const val ACCESS_TOKEN = "APP_USR-4118503939507203-070517-51f7402fba63c6b0949fdd49b79ab367-166140586"
+        private const val ACCESS_TOKEN = "APP_USR-4118503939507203-070608-e419462bce3e0960868cad1798f00968-166140586"
         public const val AUTHORIZATION_VALUE = "Bearer ${ACCESS_TOKEN}"
     }
 

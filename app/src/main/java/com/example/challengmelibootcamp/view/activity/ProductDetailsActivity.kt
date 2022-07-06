@@ -56,7 +56,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 setProductsData(viewModel.productDescriptionModel())
 
             }else{
-                Toast.makeText(baseContext, "ERRO!!!!", Toast.LENGTH_LONG).show()
+                this.finish()
+                Toast.makeText(baseContext, "Erro", Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -75,7 +76,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         val requestOptions = RequestOptions()
-            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_launcher_background)
             .placeholder(R.drawable.ic_launcher_background)
 
         Glide.with(this)
