@@ -24,7 +24,7 @@ class PicturesAdapter(val pictures: List<ProductPictureModel>, val context: Cont
     override fun onBindViewHolder(holder: PictureViewHolder, position: Int) {
 
         val options: RequestOptions = RequestOptions()
-            .placeholder(R.drawable.icon_test)
+            .placeholder(R.drawable.icon_loading)
             .error(R.drawable.icon_test)
 
         Glide.with(context)
