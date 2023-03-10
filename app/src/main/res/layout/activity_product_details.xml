@@ -115,16 +115,16 @@
                 android:layout_height="wrap_content"/>
 
 
-            <ImageView
-                android:padding="8dp"
-                android:elevation="5dp"
+            <androidx.viewpager2.widget.ViewPager2
                 android:background="@drawable/shadow_rect"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/image_product_thumbnail"
-                android:layout_marginTop="16dp"
                 android:src="@drawable/icon_test"
                 app:layout_constraintTop_toBottomOf="@id/text_product_title"
+                android:padding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:elevation="5dp"
+                android:layout_marginTop="16dp"
+                android:id="@+id/image_product_thumbnail"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"/>
 

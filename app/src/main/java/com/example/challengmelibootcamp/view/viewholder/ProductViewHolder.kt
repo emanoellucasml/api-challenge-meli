@@ -15,8 +15,8 @@ class ProductViewHolder(var binding: ItemRowBinding) : RecyclerView.ViewHolder(b
         binding.textPrice.text = "${binding.textPrice.text}".replace("*", product.price).replace(".", ",")
 
         val requestOptions = RequestOptions()
-            .placeholder(R.drawable.ic_launcher_background)
-            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.icon_test)
+            .placeholder(R.drawable.icon_loading)
 
         Glide.with(binding.root)
             .applyDefaultRequestOptions(requestOptions)
